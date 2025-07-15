@@ -7,16 +7,14 @@ if (!DATABASE_URI) {
   );
 }
 
-const connectToDatabase = adync () => {
-    try {
-        await mongoose.connect(DATABASE_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-    } catch (error) {
-        console.error("Error connecting to the database:", error);
-        process.exit(1);
-    }
-}
+const connectToDatabase = async () => {
+  try {
+    await mongoose.connect(DATABASE_URI);
+    console.log(`Connected to MongoDB in ${NODE_ENV} mode`);
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+    process.exit(1);
+  }
+};
 
 export default connectToDatabase;
