@@ -4,7 +4,7 @@ export const createSubscription = async (req, res, next) => {
   try {
     const subscription = await Subscription.create({
       ...req.body,
-      user: req.user._id,
+      user: req.user.id,
     });
 
     res.status(201).json({
@@ -33,8 +33,6 @@ export const getUserSubscriptions = async (req, res, next) => {
       message: "User subscriptions retrieved successfully",
       data: subscriptions,
     });
-
-    next();
   } catch (error) {
     next(error);
   }
