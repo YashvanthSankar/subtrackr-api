@@ -2,18 +2,21 @@ import { aj } from "../config/arcjet.js";
 
 export const arcjetMiddleware = async (req, res, next) => {
   try {
-    const decision = await aj.protect(req, { requested: 1 });
+    const decision = await aj.protect(req, {
+      requested: 1,
+      allowUserAgents: [/PostmanRuntime/i],
+    });
 
     if (decision.isDenied()) {
       if (decision.reason.isRateLimit()) {
-        res.status(429).json({
+        return res.status(429).json({
           success: false,
           message: "Rate limit exceeded",
         });
       }
 
       if (decision.reason.isBot()) {
-        res.status(403).json({
+        return res.status(403).json({
           success: false,
           message: "Bots are not allowed",
         });
