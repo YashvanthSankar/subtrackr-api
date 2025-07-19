@@ -1,5 +1,6 @@
 import { workflowClient } from "../config/upstash.js";
 import Subscription from "../models/subscription.model.js";
+import { SERVER_URL } from "../config/env.js";
 
 export const createSubscription = async (req, res, next) => {
   try {
@@ -23,6 +24,7 @@ export const createSubscription = async (req, res, next) => {
       success: true,
       message: "Subscription created successfully",
       data: subscription,
+      workflowRunId,
     });
   } catch (error) {
     next(error);
