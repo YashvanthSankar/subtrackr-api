@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const { serve } = require("@upstash/workflow/express");
-import Subscription from "../models/subscription.model";
+import Subscription from "../models/subscription.model.js";
 import { sendReminderEmail } from "../utils/email.utils.js"; // Assuming you have a utility to send emails
 
 const reminders = [7, 5, 2, 1];

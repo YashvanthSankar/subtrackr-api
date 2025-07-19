@@ -1,9 +1,8 @@
 import e, { Router } from "express";
+import { sendReminder } from "../controllers/workflow.controller.js";
 
 const workflowRouter = Router();
 
-workflowRouter.get("/", (req, res) => {
-  res.send({ title: "GET all workflows" });
-});
+workflowRouter.post("/", sendReminder);
 
 export default workflowRouter;
